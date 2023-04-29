@@ -10,14 +10,14 @@ import Login from "../pages/Login/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Terms from "../pages/Shared/Terms/Terms";
 
-const router= createBrowserRouter([
+const router = createBrowserRouter([
 
     {
         path: '/',
         element: <LoginLayout></LoginLayout>,
         children: [
             {
-                path:'/',
+                path: '/',
                 element: <Navigate to='/category/0'></Navigate>
             },
             {
@@ -36,25 +36,25 @@ const router= createBrowserRouter([
     },
     {
         path: 'category',
-        element : <Main></Main>,
+        element: <Main></Main>,
         children: [
-          
+
             {
                 path: ':id',
-                element:<Category></Category>,
-                loader: ({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+                element: <Category></Category>,
+                loader: ({ params }) => fetch(`https://the-news-dragon-server-sahrial-alam34.vercel.app/categories/${params.id}`)
             },
-          
+
         ]
     },
     {
-        path:'news',
+        path: 'news',
         element: <NewsLayout></NewsLayout>,
         children: [
             {
                 path: ':id',
                 element: <PrivateRoute><News></News></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
+                loader: ({ params }) => fetch(`https://the-news-dragon-server-sahrial-alam34.vercel.app/news/${params.id}`)
             }
         ]
     }
